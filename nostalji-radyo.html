@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>90'lar Nostalji Radyosu</title>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2a1b4d;--teal:#00d1c1;--pink:#ff3d9a;--yellow:#ffd23f;--cream:#f5efe0}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#000;overflow:hidden}
+#stage{width:1080px;height:1920px;position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;
+ background:
+  linear-gradient(135deg,transparent 0 46%,var(--teal) 46% 47.5%,transparent 47.5%) 0 0/360px 360px,
+  linear-gradient(45deg,transparent 0 46%,var(--pink) 46% 47.5%,transparent 47.5%) 0 0/360px 360px,
+  var(--bg);
+ animation:bg 24s linear infinite;
+ font-family:'VT323',monospace;color:var(--cream);display:flex;flex-direction:column;align-items:center;padding:110px 70px 60px}
+#stage>*:not(.sh){position:relative;z-index:1}
+@keyframes bg{to{background-position:360px 360px,-360px 360px,0 0}}
+
+/* Türkçe İ/I düzeltmesi: Bungee yalnızca büyük harf olduğu için metni tr kurallarıyla büyütüyoruz */
+h1,.t,.ask,.ticker{text-transform:uppercase}
+
+.live{position:absolute!important;top:36px;right:60px;font-family:'Bungee',Impact,sans-serif;font-size:34px;color:#fff;background:#111;padding:4px 20px;border-radius:40px}
+.live::before{content:"";display:inline-block;width:20px;height:20px;border-radius:50%;background:#ff2a2a;margin-right:12px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+h1{font-family:'Bungee',Impact,sans-serif;font-size:118px;line-height:.95;text-align:center;color:var(--yellow);
+ animation:sway 6s ease-in-out infinite,shade 3s ease-in-out infinite alternate}
+@keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+@keyframes shade{from{text-shadow:6px 6px 0 var(--pink),12px 12px 0 var(--bg)}to{text-shadow:6px 6px 0 var(--teal),12px 12px 0 var(--bg)}}
+.sub{font-size:48px;margin-top:34px;background:var(--cream);color:var(--bg);padding:2px 26px;transform:rotate(-2deg)}
+
+.tape{margin-top:70px;width:900px;height:560px;background:var(--cream);border:12px solid #111;border-radius:34px;position:relative;box-shadow:16px 16px 0 var(--pink);animation:bob 5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-16px) rotate(1deg)}}
+.label{position:absolute;left:40px;right:40px;top:34px;height:190px;background:var(--yellow);border:6px solid #111;border-radius:12px;padding:18px 28px;color:#111}
+.label.pop{animation:pop .6s ease-out}
+@keyframes pop{0%{transform:scale(.88) rotate(-3deg)}60%{transform:scale(1.07) rotate(1.5deg)}100%{transform:scale(1)}}
+.t{font-family:'Bungee',Impact,sans-serif;font-size:56px;white-space:nowrap;overflow:hidden;line-height:1.15}
+.a{font-size:50px;white-space:nowrap;overflow:hidden;margin-top:6px}
+.t span,.a span{display:inline-block}
+.mq{animation:mq 7s ease-in-out infinite alternate}
+@keyframes mq{0%,15%{transform:translateX(0)}85%,100%{transform:translateX(calc(-1*var(--d)))}}
+.window{position:absolute;left:110px;right:110px;top:262px;height:200px;background:#111;border-radius:100px;display:flex;justify-content:space-between;align-items:center;padding:0 34px}
+.reel{width:150px;height:150px;border-radius:50%;background:var(--cream);position:relative;animation:spin 2.2s linear infinite}
+.paused .reel{animation-play-state:paused}
+.reel::before{content:"";position:absolute;inset:48px;border-radius:50%;background:#111}
+.reel i{position:absolute;left:50%;top:50%;width:14px;height:150px;margin:-75px 0 0 -7px;background:linear-gradient(#111 0 28px,transparent 28px calc(100% - 28px),#111 0)}
+.reel i:nth-child(2){transform:rotate(60deg)}.reel i:nth-child(3){transform:rotate(120deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eq{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;gap:10px;height:58px;align-items:flex-end}
+.eq u{width:22px;height:10px;background:var(--pink);transition:height .14s ease-out}
+.eq u:nth-child(2n){background:var(--teal)}
+
+.clock{margin-top:60px;font-size:150px;line-height:1;color:var(--teal);animation:glow 2.4s ease-in-out infinite alternate}
+.clock .c{animation:blink 1s steps(1) infinite}
+@keyframes glow{from{text-shadow:0 0 12px rgba(0,209,193,.4)}to{text-shadow:0 0 40px rgba(0,209,193,.95),0 0 80px rgba(255,61,154,.4)}}
+.date{font-size:50px;margin-top:6px;opacity:.85}
+
+.ticker{margin-top:40px;width:100%;height:64px;overflow:hidden;background:var(--yellow);color:var(--bg);border:6px solid #111;font-family:'Bungee',Impact,sans-serif;font-size:32px;line-height:52px;white-space:nowrap}
+.tk{display:inline-block;animation:tick 22s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+.ask{margin-top:auto;width:100%;background:var(--pink);color:#fff;border:8px solid #111;border-radius:24px;padding:34px 40px;text-align:center;
+ font-family:'Bungee',Impact,sans-serif;font-size:52px;line-height:1.2;box-shadow:12px 12px 0 var(--yellow);min-height:270px;display:flex;align-items:center;justify-content:center}
+.ask.wig{animation:wig .7s ease-out}
+@keyframes wig{0%{transform:scale(.94) rotate(-2deg)}40%{transform:scale(1.05) rotate(1.5deg)}70%{transform:rotate(-.8deg)}100%{transform:none}}
+.note{margin-top:40px;font-size:40px;opacity:.8}
+
+/* Süs şekilleri */
+.sh{position:absolute;z-index:0;opacity:.55;animation:fl 9s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(18px,-40px) rotate(180deg)}}
+.s1{left:30px;top:340px;width:120px;height:120px;border:16px solid var(--teal);border-radius:50%}
+.s2{right:40px;top:780px;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:90px solid var(--yellow);animation-duration:11s}
+.s3{left:50px;top:1180px;width:80px;height:80px;background:var(--pink);animation-duration:7s}
+.s4{right:70px;top:1290px;width:90px;height:90px;border:14px solid var(--yellow);border-radius:50%;animation-duration:10s}
+.s5{right:110px;top:400px;width:44px;height:44px;background:var(--teal);border-radius:50%;animation-duration:6s}
+.s6{left:80px;top:1480px;border-left:36px solid transparent;border-right:36px solid transparent;border-bottom:64px solid var(--pink);animation-duration:12s}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="sh s1"></div><div class="sh s2"></div><div class="sh s3"></div>
+  <div class="sh s4"></div><div class="sh s5"></div><div class="sh s6"></div>
+
+  <div class="live">CANLI</div>
+  <h1>90'lar<br>Nostalji Radyosu</h1>
+  <div class="sub">kaseti tak, geçmişe dön</div>
+
+  <div class="tape" id="tape">
+    <div class="label" id="label">
+      <div class="t"><span id="song">Yayın başlıyor</span></div>
+      <div class="a"><span id="artist">Birazdan görüşürüz</span></div>
+    </div>
+    <div class="window"><div class="reel"><i></i><i></i><i></i></div><div class="reel"><i></i><i></i><i></i></div></div>
+    <div class="eq" id="eq" aria-hidden="true"></div>
+  </div>
+
+  <div class="clock" id="clock">00<span class="c">:</span>00</div>
+  <div class="date" id="date"></div>
+
+  <div class="ticker"><div class="tk" id="tk"></div></div>
+
+  <div class="ask" id="askbox"><span id="ask"></span></div>
+  <div class="note">istek için yorumuna yıl ve tür yaz</div>
+</div>
+
+<script>
+function fit(){var s=Math.min(innerWidth/1080,innerHeight/1920);document.getElementById('stage').style.transform='scale('+s+')'}
+addEventListener('resize',fit);fit();
+
+// Uzun isimleri kaydır
+function marquee(el){
+  el.classList.remove('mq');el.style.removeProperty('--d');
+  var over=el.offsetWidth-el.parentElement.clientWidth;
+  if(over>4){el.style.setProperty('--d',over+'px');el.classList.add('mq')}
+}
+function setNow(song,artist){
+  var s=document.getElementById('song'),a=document.getElementById('artist'),l=document.getElementById('label');
+  s.textContent=song||'';a.textContent=artist||'';
+  marquee(s);marquee(a);
+  l.classList.remove('pop');void l.offsetWidth;l.classList.add('pop');
+}
+
+// Ekolayzır
+var eq=document.getElementById('eq'),bars=[],playing=true;
+for(var b=0;b<16;b++){var u=document.createElement('u');eq.appendChild(u);bars.push(u)}
+setInterval(function(){
+  for(var k=0;k<bars.length;k++)bars[k].style.height=(playing?8+Math.random()*50:8)+'px';
+},140);
+function setPlaying(p){playing=p;document.getElementById('tape').classList.toggle('paused',!p)}
+
+// Şu an çalıyor: ?song=...&artist=... ile elle ya da radyo_sunucu.py ile VLC'den otomatik
+var q=new URLSearchParams(location.search);
+// GitHub'dan açılınca şarkı bilgisini senin bilgisayarındaki sunucudan al
+var BASE=(location.hostname==='localhost'||location.hostname==='127.0.0.1')?'':'http://127.0.0.1:8099';
+if(q.get('song'))setNow(q.get('song'),q.get('artist'));
+else{
+  var last='';
+  function poll(){
+    fetch(BASE+'/now').then(function(r){return r.json()}).then(function(d){
+      if(!d.ok)return;
+      setPlaying(d.state==='playing');
+      if(d.state==='playing'&&d.song){
+        var k=d.song+'|'+d.artist;
+        if(k!==last){last=k;setNow(d.song,d.artist||'90\'lar radyosu')}
+      }
+    }).catch(function(){});
+  }
+  poll();setInterval(poll,3000);
+}
+
+// Saat (iki nokta yanıp söner)
+function tick(){
+  var d=new Date();
+  var h=('0'+d.getHours()).slice(-2),m=('0'+d.getMinutes()).slice(-2);
+  document.getElementById('clock').innerHTML=h+'<span class="c">:</span>'+m;
+  document.getElementById('date').textContent=d.toLocaleDateString('tr-TR',{day:'numeric',month:'long',weekday:'long'});
+}
+tick();setInterval(tick,10000);
+
+// Kayan şerit
+var msg='★ 90\'lar nostalji radyosu ★ kaseti tak ★ yorumuna istek yaz ★ hangi yılı çalalım ★ ';
+document.getElementById('tk').innerHTML='<span>'+msg+msg+'</span><span>'+msg+msg+'</span>';
+
+// Dönen sorular
+var asks=[
+  'İlk kaseti kimden aldın?',
+  'Radyodan kaydettiğin şarkıyı hatırlayan var mı?',
+  'En çok hangi dizinin jeneriğini ezbere biliyordun?',
+  'Hangi yılı geri getirmek isterdin?',
+  'Okul dönüşü çalan şarkı neydi?'
+];
+var i=0,el=document.getElementById('ask'),box=document.getElementById('askbox');
+function next(){
+  el.textContent=asks[i++%asks.length];
+  box.classList.remove('wig');void box.offsetWidth;box.classList.add('wig');
+}
+next();setInterval(next,15000);
+</script>
+</body>
+</html>
